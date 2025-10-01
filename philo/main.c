@@ -17,6 +17,10 @@ bool	are_all_numbers(int argc, char **argv)
 void	error_exit(t_table *gmu)
 {
 	write(2, "Error\n", 6);
+	if (gmu->forks)
+		destroy_forks(gmu);
+	free(gmu->forks);
+	free(gmu->philos);
 	exit(1);
 }
 
