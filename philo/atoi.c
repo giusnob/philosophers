@@ -18,6 +18,16 @@ bool	is_valid_input(char *s)
 int	simple_atoi(char *s)
 {
 	int	res;
+	int i;
 
+	i = 0;
+	res = 0;
+
+	while (s[i])
+	{
+		res = res * 10; 
+		res = res + (s[i] - '0');
+		i++;
+	}
 	return (res);
 }

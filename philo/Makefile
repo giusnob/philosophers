@@ -7,7 +7,8 @@ RM = rm -f
 SRC = ./philo/atoi.c \
 	./philo/main.c \
 	./philo/monitor.c \
-	./philo/philo_routine.c
+	./philo/philo_routine.c \
+	./philo/simulation.c
 
 
 all: $(NAME)
