@@ -1,18 +1,5 @@
 #include "philo.h"
 
-/*
-argc = 1
-./philo
-
-argc = 5
-./philo 4 800 200 200
-
-argc = 6
-./philo 4 800 200 200 7
-
-argc = 7
-./philo 4 800 200 200 7 1000
-*/
 bool	are_all_numbers(int argc, char **argv)
 {
 	int	i;
@@ -32,7 +19,6 @@ void	error_exit(t_table *gmu)
 	write(2, "Error\n", 6);
 	exit(1);
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -57,7 +43,5 @@ int	main(int argc, char **argv)
 	}
 	if (argc == 6 && gmu.meals_to_finish == 0)
 		error_exit(&gmu);
-
-
-
+	simulation(&gmu);
 }
