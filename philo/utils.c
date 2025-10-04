@@ -11,3 +11,11 @@ void	destroy_forks(t_table *gmu)
 		i++;
 	}
 }
+
+size_t	current_time()
+{
+	struct timeval	tval;
+
+	gettimeofday(&tval, NULL);
+	return (tval.tv_sec * 1000 + tval.tv_usec / 1000);
+}

@@ -25,6 +25,9 @@ void	init_philos(t_table *gmu)
 		error_exit(gmu);
 	while (i < gmu->n_philos)
 	{
+		gmu->philos[i] = (t_philo){0};
+		gmu->philos[i].number = i + 1;
+		pthread_mutex_init(&gmu->philos[i].meal_lock, NULL);
 		if (i == gmu->n_philos - 1)
 		{
 			gmu->philos[i].right_fork = &gmu->forks[i];
@@ -42,14 +45,41 @@ void	init_philos(t_table *gmu)
 
 void	start_dinner(t_table *gmu)
 {
+	int	i;
+
+	i = 0;
+	gmu->start_time = current_time();
+	pthread_mutex_init(&gmu->print_lock, NULL);
+	pthread_mutex_init(&gmu->sim_lock, NULL);
 	
+	while (i < gmu->n_philos)
+	{
+		pthread_create(&gmu->philos[i].id, NULL, philo_routine, &gmu->philos[i]);
+		i++;
+	}
+	monitor(gmu);
 }
 
 void	end_dinner(t_table *gmu)
 {
-	// wait for other philos
+	int	i;
+
+	i = 0;
+	while (i < gmu->n_philos)
+	{
+		pthread_join(gmu->philos[i].id, NULL);
+		pthread_mutex_destroy(&gmu->philos[i].meal_lock);
+		i++;
+	}
 	destroy_forks(gmu);
+	// clean up
+	free(gmu->forks);
+	free(gmu->philos);
+	pthread_mutex_destroy(&gmu->print_lock);
+	pthread_mutex_destroy(&gmu->sim_lock);
 }
+
+
 
 void	simulation(t_table *gmu)
 {
