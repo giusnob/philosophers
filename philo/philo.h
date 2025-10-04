@@ -21,7 +21,7 @@ typedef struct s_philo
 typedef struct s_table
 {
 	t_mutex	*forks;
-	t_philo *philos;
+	t_philo	*philos;
 	int		n_philos;
 	int		time_to_die;
 	int		time_to_eat;

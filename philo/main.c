@@ -5,6 +5,7 @@ bool	are_all_numbers(int argc, char **argv)
 	int	i;
 
 	i = 1;
+	(void)argc;
 	while (argv[i])
 	{
 		if (!is_valid_input(argv[i]))
