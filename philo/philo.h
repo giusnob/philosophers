@@ -52,6 +52,9 @@ void	monitor(t_table *gmu);
 void	philo_routine(t_philo *philo);
 void	simulation(t_table *gmu);
 int		simple_atoi(char *s);
+bool	is_sim_finished(t_table *gmu);
+void	set_sim_finished(t_table *gmu, bool s_finish);
+
 
 size_t	current_time();
 

@@ -51,7 +51,6 @@ void	start_dinner(t_table *gmu)
 	gmu->start_time = current_time();
 	pthread_mutex_init(&gmu->print_lock, NULL);
 	pthread_mutex_init(&gmu->sim_lock, NULL);
-	
 	while (i < gmu->n_philos)
 	{
 		pthread_create(&gmu->philos[i].id, NULL, philo_routine, &gmu->philos[i]);
@@ -78,8 +77,6 @@ void	end_dinner(t_table *gmu)
 	pthread_mutex_destroy(&gmu->print_lock);
 	pthread_mutex_destroy(&gmu->sim_lock);
 }
-
-
 
 void	simulation(t_table *gmu)
 {

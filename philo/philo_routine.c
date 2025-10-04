@@ -2,5 +2,5 @@
 
 void	philo_routine(t_philo *philo)
 {
-
+	
 }
