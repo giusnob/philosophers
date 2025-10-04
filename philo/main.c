@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	if (argc == 6)
 	{
 		gmu.meals_to_finish_present = true;
-		gmu.meals_to_finish = simple_atoi(argv[5]);
+		gmu.meals_to_finish = (size_t) simple_atoi(argv[5]);
 	}
 	if (argc == 6 && gmu.meals_to_finish == 0)
 		error_exit(&gmu);

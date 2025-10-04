@@ -1,5 +1,15 @@
 #include "philo.h"
 
+size_t	get_n_meals(t_philo *philo)
+{
+	size_t	curr_meal;
+
+	pthread_mutex_lock(&philo->meal_lock);
+	curr_meal = philo->n_meals;
+	pthread_mutex_unlock(&philo->meal_lock);
+	return (curr_meal);
+}
+
 void	print_action(t_philo *philo, t_action act)
 {
 	size_t	curr_time;

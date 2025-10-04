@@ -42,7 +42,7 @@ typedef struct s_table
 	int		time_to_sleep;
 
 	bool	meals_to_finish_present;
-	int		meals_to_finish;
+	size_t	meals_to_finish;
 
 	t_mutex	print_lock;
 
@@ -58,6 +58,7 @@ void	destroy_forks(t_table *gmu);
 void	eat(t_philo *philo);
 void	end_dinner(t_table *gmu);
 void	error_exit(t_table *gmu);
+size_t	get_n_meals(t_philo *philo);
 void	init_forks(t_table *gmu);
 void	init_philos(t_table *gmu);
 bool	is_sim_finished(t_table *gmu);
