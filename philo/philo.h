@@ -52,19 +52,24 @@ typedef struct s_table
 	size_t	start_time;
 }	t_table;
 
-
 bool	are_all_numbers(int argc, char **argv);
+size_t	current_time();
 void	destroy_forks(t_table *gmu);
+void	eat(t_philo *philo);
+void	end_dinner(t_table *gmu);
 void	error_exit(t_table *gmu);
+void	init_forks(t_table *gmu);
+void	init_philos(t_table *gmu);
+bool	is_sim_finished(t_table *gmu);
 bool	is_valid_input(char *s);
 void	monitor(t_table *gmu);
 void	philo_routine(t_philo *philo);
-void	simulation(t_table *gmu);
-int		simple_atoi(char *s);
-bool	is_sim_finished(t_table *gmu);
+void	print_action(t_philo *philo, t_action act);
+void	release_forks(t_philo *philo);
 void	set_sim_finished(t_table *gmu, bool s_finish);
-
-
-size_t	current_time();
+int		simple_atoi(char *s);
+void	simulation(t_table *gmu);
+void	start_dinner(t_table *gmu);
+void	take_forks(t_philo *philo);
 
 # endif

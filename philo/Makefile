@@ -4,11 +4,13 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror -g -I. -Iinclude -Ift_printf/libft -Ift_printf
 RM = rm -f
 
-SRC = ./philo/atoi.c \
-	./philo/main.c \
-	./philo/monitor.c \
-	./philo/philo_routine.c \
-	./philo/simulation.c
+SRC = ./atoi.c \
+	./main.c \
+	./monitor.c \
+	./philo_routine.c \
+	./philo_utils.c \
+	./simulation.c \
+	./utils.c
 
 
 all: $(NAME)
