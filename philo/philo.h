@@ -8,6 +8,15 @@
 # include <sys/time.h>
 # include <stdbool.h>
 
+typedef enum e_action
+{
+	ACTION_SLEEP,
+	ACTION_THINK,
+	ACTION_EAT,
+	ACTION_TAKE_FORK,
+	ACTION_DEATH
+}	t_action;
+
 typedef pthread_mutex_t	t_mutex;
 
 typedef struct s_philo
