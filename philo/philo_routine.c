@@ -28,7 +28,7 @@ void	release_forks(t_philo *philo)
 
 void	philo_routine(t_philo *philo)
 {
-	if (philo->gmu->n_philos == 1)
+	if (philo->gmu->philos_number == 1)
 		return ;
 	if (philo->number % 2 == 0)
 		usleep(50);

@@ -2,12 +2,12 @@
 
 size_t	get_n_meals(t_philo *philo)
 {
-	size_t	curr_meal;
+	size_t	n_meal;
 
 	pthread_mutex_lock(&philo->meal_lock);
-	curr_meal = philo->n_meals;
+	n_meal = philo->n_meals;
 	pthread_mutex_unlock(&philo->meal_lock);
-	return (curr_meal);
+	return (n_meal);
 }
 
 void	print_action(t_philo *philo, t_action act)

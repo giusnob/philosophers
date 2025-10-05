@@ -5,10 +5,10 @@ void	init_forks(t_table *gmu)
 	int	i;
 
 	i = 0;
-	gmu->forks = (t_mutex *)malloc(sizeof(t_mutex) * gmu->n_philos);
+	gmu->forks = (t_mutex *)malloc(sizeof(t_mutex) * gmu->philos_number);
 	if (!gmu->forks)
 		error_exit(gmu);
-	while (i < gmu->n_philos)
+	while (i < gmu->philos_number)
 	{
 		pthread_mutex_init(&gmu->forks[i], NULL);
 		i++;
@@ -20,15 +20,15 @@ void	init_philos(t_table *gmu)
 	int i;
 
 	i = 0;
-	gmu->philos = (t_philo *)malloc(sizeof(t_philo) * gmu->n_philos);
+	gmu->philos = (t_philo *)malloc(sizeof(t_philo) * gmu->philos_number);
 	if (!gmu->philos)
 		error_exit(gmu);
-	while (i < gmu->n_philos)
+	while (i < gmu->philos_number)
 	{
 		gmu->philos[i] = (t_philo){0};
 		gmu->philos[i].number = i + 1;
 		pthread_mutex_init(&gmu->philos[i].meal_lock, NULL);
-		if (i == gmu->n_philos - 1)
+		if (i == gmu->philos_number - 1)
 		{
 			gmu->philos[i].right_fork = &gmu->forks[i];
 			gmu->philos[i].left_fork = &gmu->forks[0];
@@ -51,7 +51,7 @@ void	start_dinner(t_table *gmu)
 	gmu->start_time = current_time();
 	pthread_mutex_init(&gmu->print_lock, NULL);
 	pthread_mutex_init(&gmu->sim_lock, NULL);
-	while (i < gmu->n_philos)
+	while (i < gmu->philos_number)
 	{
 		pthread_create(&gmu->philos[i].id, NULL, philo_routine, &gmu->philos[i]);
 		i++;
@@ -64,7 +64,7 @@ void	end_dinner(t_table *gmu)
 	int	i;
 
 	i = 0;
-	while (i < gmu->n_philos)
+	while (i < gmu->philos_number)
 	{
 		pthread_join(gmu->philos[i].id, NULL);
 		pthread_mutex_destroy(&gmu->philos[i].meal_lock);

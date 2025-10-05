@@ -34,11 +34,11 @@ int	main(int argc, char **argv)
 		error_exit(&gmu);
 	if (!are_all_numbers(argc, argv))
 		error_exit(&gmu);
-	gmu.n_philos = simple_atoi(argv[1]);
+	gmu.philos_number = simple_atoi(argv[1]);
 	gmu.time_to_die = simple_atoi(argv[2]);
 	gmu.time_to_eat = simple_atoi(argv[3]);
 	gmu.time_to_sleep = simple_atoi(argv[4]);
-	if (gmu.n_philos == 0 || gmu.time_to_die == 0
+	if (gmu.philos_number == 0 || gmu.time_to_die == 0
 		|| gmu.time_to_eat == 0 || gmu.time_to_sleep == 0)
 		error_exit(&gmu);
 	if (argc == 6)
@@ -50,3 +50,4 @@ int	main(int argc, char **argv)
 		error_exit(&gmu);
 	simulation(&gmu);
 }
+
