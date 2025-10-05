@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simulation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ginobile <ginobile@student.42firenze.it    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/05 16:54:14 by ginobile          #+#    #+#             */
+/*   Updated: 2025/10/05 16:54:15 by ginobile         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	init_forks(t_table *gmu)
@@ -17,7 +29,7 @@ void	init_forks(t_table *gmu)
 
 void	init_philos(t_table *gmu)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	gmu->philos = (t_philo *)malloc(sizeof(t_philo) * gmu->philos_number);

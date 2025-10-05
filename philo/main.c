@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ginobile <ginobile@student.42firenze.it    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/05 16:53:59 by ginobile          #+#    #+#             */
+/*   Updated: 2025/10/05 16:54:00 by ginobile         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 bool	are_all_numbers(int argc, char **argv)
@@ -50,4 +62,3 @@ int	main(int argc, char **argv)
 		error_exit(&gmu);
 	simulation(&gmu);
 }
-

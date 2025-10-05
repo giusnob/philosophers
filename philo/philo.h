@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ginobile <ginobile@student.42firenze.it    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/05 16:54:12 by ginobile          #+#    #+#             */
+/*   Updated: 2025/10/05 16:54:12 by ginobile         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -53,7 +65,7 @@ typedef struct s_table
 }	t_table;
 
 bool	are_all_numbers(int argc, char **argv);
-size_t	current_time();
+size_t	current_time(void);
 void	custom_usleep(size_t milliseconds);
 void	destroy_forks(t_table *gmu);
 void	eat(t_philo *philo);
@@ -74,4 +86,4 @@ void	simulation(t_table *gmu);
 void	start_dinner(t_table *gmu);
 void	take_forks(t_philo *philo);
 
-# endif
+#endif

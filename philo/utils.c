@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ginobile <ginobile@student.42firenze.it    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/05 16:54:19 by ginobile          #+#    #+#             */
+/*   Updated: 2025/10/05 16:54:20 by ginobile         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	custom_usleep(size_t milliseconds)
@@ -21,7 +33,7 @@ void	destroy_forks(t_table *gmu)
 	}
 }
 
-size_t	current_time()
+size_t	current_time(void)
 {
 	struct timeval	tval;
 
@@ -32,7 +44,7 @@ size_t	current_time()
 bool	is_sim_finished(t_table *gmu)
 {
 	bool	end;
-	
+
 	pthread_mutex_lock(&gmu->sim_lock);
 	end = gmu->sim_finished;
 	pthread_mutex_unlock(&gmu->sim_lock);
