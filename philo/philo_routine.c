@@ -14,7 +14,7 @@ void	eat(t_philo *philo)
 	philo->last_meal_time = current_time();
 	pthread_mutex_unlock(&philo->meal_lock);
 	print_action(philo, ACTION_EAT);
-	usleep(philo->gmu->time_to_eat * 1000);
+	custom_usleep(philo->gmu->time_to_eat);
 	pthread_mutex_lock(&philo->meal_lock);
 	philo->n_meals++;
 	pthread_mutex_unlock(&philo->meal_lock);
@@ -28,20 +28,20 @@ void	release_forks(t_philo *philo)
 
 void	philo_routine(t_philo *philo)
 {
-	if (philo->gmu->philos_number == 1)
-		return ;
 	if (philo->number % 2 == 0)
 		usleep(50);
+	pthread_mutex_lock(&philo->meal_lock);
+	philo->last_meal_time = current_time();
+	pthread_mutex_unlock(&philo->meal_lock);
+	if (philo->gmu->philos_number == 1)
+		return ;
 	while (!is_sim_finished(philo->gmu))
 	{
 		take_forks(philo);
 		eat(philo);
 		release_forks(philo);
-		if (philo->gmu->meals_to_finish_present
-			&& get_n_meals(philo) >= philo->gmu->meals_to_finish)
-			break ;
 		print_action(philo, ACTION_SLEEP);
-		usleep(philo->gmu->time_to_sleep * 1000);
+		custom_usleep(philo->gmu->time_to_sleep);
 		print_action(philo, ACTION_THINK);
 	}
 }

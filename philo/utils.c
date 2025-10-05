@@ -1,5 +1,14 @@
 #include "philo.h"
 
+void	custom_usleep(size_t milliseconds)
+{
+	size_t	right_time;
+
+	right_time = current_time() + milliseconds;
+	while (current_time() < right_time)
+		usleep(50);
+}
+
 void	destroy_forks(t_table *gmu)
 {
 	int	i;

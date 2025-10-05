@@ -54,6 +54,7 @@ typedef struct s_table
 
 bool	are_all_numbers(int argc, char **argv);
 size_t	current_time();
+void	custom_usleep(size_t milliseconds);
 void	destroy_forks(t_table *gmu);
 void	eat(t_philo *philo);
 void	end_dinner(t_table *gmu);

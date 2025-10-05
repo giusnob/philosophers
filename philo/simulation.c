@@ -72,7 +72,6 @@ void	end_dinner(t_table *gmu)
 		i++;
 	}
 	destroy_forks(gmu);
-	// clean up
 	free(gmu->forks);
 	free(gmu->philos);
 	pthread_mutex_destroy(&gmu->print_lock);
