@@ -29,6 +29,6 @@ void	print_action(t_philo *philo, t_action act)
 	if (act == ACTION_TAKE_FORK)
 		print = "has taken a fork";
 	pthread_mutex_lock(&philo->gmu->print_lock);
-	printf("%llu %d %s\n", curr_time, philo->number, print);
+	printf("%zu %d %s\n", curr_time, philo->number, print);
 	pthread_mutex_unlock(&philo->gmu->print_lock);
 }

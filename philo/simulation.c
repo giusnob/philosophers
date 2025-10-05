@@ -53,7 +53,8 @@ void	start_dinner(t_table *gmu)
 	pthread_mutex_init(&gmu->sim_lock, NULL);
 	while (i < gmu->philos_number)
 	{
-		pthread_create(&gmu->philos[i].id, NULL, philo_routine, &gmu->philos[i]);
+		pthread_create(&gmu->philos[i].id, NULL,
+			(void (*))philo_routine, &gmu->philos[i]);
 		i++;
 	}
 	monitor(gmu);
