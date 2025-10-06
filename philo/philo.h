@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ginobile <ginobile@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 16:54:12 by ginobile          #+#    #+#             */
-/*   Updated: 2025/10/05 16:54:12 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/10/06 12:04:43 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_philo
 	size_t			last_meal_time;
 	t_mutex			meal_lock;
 
-	struct s_table	*gmu;
+	struct s_table	*table;
 }	t_philo;
 
 typedef struct s_table
@@ -67,23 +67,23 @@ typedef struct s_table
 bool	are_all_numbers(int argc, char **argv);
 size_t	current_time(void);
 void	custom_usleep(size_t milliseconds);
-void	destroy_forks(t_table *gmu);
+void	destroy_forks(t_table *table);
 void	eat(t_philo *philo);
-void	end_dinner(t_table *gmu);
-void	error_exit(t_table *gmu);
+void	end_dinner(t_table *table);
+void	error_exit(t_table *table);
 size_t	get_n_meals(t_philo *philo);
-void	init_forks(t_table *gmu);
-void	init_philos(t_table *gmu);
-bool	is_sim_finished(t_table *gmu);
+void	init_forks(t_table *table);
+void	init_philos(t_table *table);
+bool	is_sim_finished(t_table *table);
 bool	is_valid_input(char *s);
-void	monitor(t_table *gmu);
+void	monitor(t_table *table);
 void	philo_routine(t_philo *philo);
 void	print_action(t_philo *philo, t_action act);
 void	release_forks(t_philo *philo);
-void	set_sim_finished(t_table *gmu, bool s_finish);
+void	set_sim_finished(t_table *table, bool s_finish);
 int		simple_atoi(char *s);
-void	simulation(t_table *gmu);
-void	start_dinner(t_table *gmu);
+void	simulation(t_table *table);
+void	start_dinner(t_table *table);
 void	take_forks(t_philo *philo);
 
 #endif

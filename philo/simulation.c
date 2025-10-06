@@ -3,97 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ginobile <ginobile@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 16:54:14 by ginobile          #+#    #+#             */
-/*   Updated: 2025/10/05 16:54:15 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/10/06 12:04:43 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_forks(t_table *gmu)
+void	init_forks(t_table *table)
 {
 	int	i;
 
 	i = 0;
-	gmu->forks = (t_mutex *)malloc(sizeof(t_mutex) * gmu->philos_number);
-	if (!gmu->forks)
-		error_exit(gmu);
-	while (i < gmu->philos_number)
+	table->forks = (t_mutex *)malloc(sizeof(t_mutex) * table->philos_number);
+	if (!table->forks)
+		error_exit(table);
+	while (i < table->philos_number)
 	{
-		pthread_mutex_init(&gmu->forks[i], NULL);
+		pthread_mutex_init(&table->forks[i], NULL);
 		i++;
 	}
 }
 
-void	init_philos(t_table *gmu)
+void	init_philos(t_table *table)
 {
 	int	i;
 
 	i = 0;
-	gmu->philos = (t_philo *)malloc(sizeof(t_philo) * gmu->philos_number);
-	if (!gmu->philos)
-		error_exit(gmu);
-	while (i < gmu->philos_number)
+	table->philos = (t_philo *)malloc(sizeof(t_philo) * table->philos_number);
+	if (!table->philos)
+		error_exit(table);
+	while (i < table->philos_number)
 	{
-		gmu->philos[i] = (t_philo){0};
-		gmu->philos[i].number = i + 1;
-		pthread_mutex_init(&gmu->philos[i].meal_lock, NULL);
-		if (i == gmu->philos_number - 1)
+		table->philos[i] = (t_philo){0};
+		table->philos[i].number = i + 1;
+		pthread_mutex_init(&table->philos[i].meal_lock, NULL);
+		if (i == table->philos_number - 1)
 		{
-			gmu->philos[i].right_fork = &gmu->forks[i];
-			gmu->philos[i].left_fork = &gmu->forks[0];
+			table->philos[i].right_fork = &table->forks[i];
+			table->philos[i].left_fork = &table->forks[0];
 		}
 		else
 		{
-			gmu->philos[i].left_fork = &gmu->forks[i];
-			gmu->philos[i].right_fork = &gmu->forks[i + 1];
+			table->philos[i].left_fork = &table->forks[i];
+			table->philos[i].right_fork = &table->forks[i + 1];
 		}
-		gmu->philos[i].gmu = gmu;
+		table->philos[i].table = table;
 		i++;
 	}
 }
 
-void	start_dinner(t_table *gmu)
+void	start_dinner(t_table *table)
 {
 	int	i;
 
 	i = 0;
-	gmu->start_time = current_time();
-	pthread_mutex_init(&gmu->print_lock, NULL);
-	pthread_mutex_init(&gmu->sim_lock, NULL);
-	while (i < gmu->philos_number)
+	table->start_time = current_time();
+	pthread_mutex_init(&table->print_lock, NULL);
+	pthread_mutex_init(&table->sim_lock, NULL);
+	while (i < table->philos_number)
 	{
-		pthread_create(&gmu->philos[i].id, NULL,
-			(void (*))philo_routine, &gmu->philos[i]);
+		pthread_create(&table->philos[i].id, NULL,
+			(void (*))philo_routine, &table->philos[i]);
 		i++;
 	}
-	monitor(gmu);
+	monitor(table);
 }
 
-void	end_dinner(t_table *gmu)
+void	end_dinner(t_table *table)
 {
 	int	i;
 
 	i = 0;
-	while (i < gmu->philos_number)
+	while (i < table->philos_number)
 	{
-		pthread_join(gmu->philos[i].id, NULL);
-		pthread_mutex_destroy(&gmu->philos[i].meal_lock);
+		pthread_join(table->philos[i].id, NULL);
+		pthread_mutex_destroy(&table->philos[i].meal_lock);
 		i++;
 	}
-	destroy_forks(gmu);
-	free(gmu->forks);
-	free(gmu->philos);
-	pthread_mutex_destroy(&gmu->print_lock);
-	pthread_mutex_destroy(&gmu->sim_lock);
+	destroy_forks(table);
+	free(table->forks);
+	free(table->philos);
+	pthread_mutex_destroy(&table->print_lock);
+	pthread_mutex_destroy(&table->sim_lock);
 }
 
-void	simulation(t_table *gmu)
+void	simulation(t_table *table)
 {
-	init_forks(gmu);
-	init_philos(gmu);
-	start_dinner(gmu);
-	end_dinner(gmu);
+	init_forks(table);
+	init_philos(table);
+	start_dinner(table);
+	end_dinner(table);
 }

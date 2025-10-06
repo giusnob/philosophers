@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ginobile <ginobile@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 16:54:04 by ginobile          #+#    #+#             */
-/*   Updated: 2025/10/05 16:54:04 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/10/06 12:04:43 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 bool	is_philo_full(t_philo *philo)
 {
-	if (!philo->gmu->meals_to_finish_present)
+	if (!philo->table->meals_to_finish_present)
 		return (false);
-	return (get_n_meals(philo) >= philo->gmu->meals_to_finish);
+	return (get_n_meals(philo) >= philo->table->meals_to_finish);
 }
 
 bool	is_philo_dead(t_philo *philo)
@@ -28,29 +28,29 @@ bool	is_philo_dead(t_philo *philo)
 	pthread_mutex_unlock(&philo->meal_lock);
 	if (meal_not_meal == 0)
 		return (false);
-	if (meal_not_meal < current_time() - philo->gmu->time_to_die)
+	if (meal_not_meal < current_time() - philo->table->time_to_die)
 		return (true);
 	return (false);
 }
 
-void	monitor(t_table *gmu)
+void	monitor(t_table *table)
 {
 	int	i;
 	int	check_philos_full;
 
 	check_philos_full = 0;
-	while (check_philos_full < gmu->philos_number)
+	while (check_philos_full < table->philos_number)
 	{
 		i = -1;
 		check_philos_full = 0;
-		while (++i < gmu->philos_number)
+		while (++i < table->philos_number)
 		{
-			if (is_philo_full(&gmu->philos[i]))
+			if (is_philo_full(&table->philos[i]))
 				check_philos_full += 1;
-			else if (is_philo_dead(&gmu->philos[i]))
+			else if (is_philo_dead(&table->philos[i]))
 			{
-				set_sim_finished(gmu, true);
-				print_action(&gmu->philos[i], ACTION_DEATH);
+				set_sim_finished(table, true);
+				print_action(&table->philos[i], ACTION_DEATH);
 				return ;
 			}
 		}

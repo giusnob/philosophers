@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ginobile <ginobile@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 16:54:07 by ginobile          #+#    #+#             */
-/*   Updated: 2025/10/05 16:54:07 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/10/06 12:04:43 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	eat(t_philo *philo)
 	philo->last_meal_time = current_time();
 	pthread_mutex_unlock(&philo->meal_lock);
 	print_action(philo, ACTION_EAT);
-	custom_usleep(philo->gmu->time_to_eat);
+	custom_usleep(philo->table->time_to_eat);
 	pthread_mutex_lock(&philo->meal_lock);
 	philo->n_meals++;
 	pthread_mutex_unlock(&philo->meal_lock);
@@ -45,15 +45,15 @@ void	philo_routine(t_philo *philo)
 	pthread_mutex_lock(&philo->meal_lock);
 	philo->last_meal_time = current_time();
 	pthread_mutex_unlock(&philo->meal_lock);
-	if (philo->gmu->philos_number == 1)
+	if (philo->table->philos_number == 1)
 		return ;
-	while (!is_sim_finished(philo->gmu))
+	while (!is_sim_finished(philo->table))
 	{
 		take_forks(philo);
 		eat(philo);
 		release_forks(philo);
 		print_action(philo, ACTION_SLEEP);
-		custom_usleep(philo->gmu->time_to_sleep);
+		custom_usleep(philo->table->time_to_sleep);
 		print_action(philo, ACTION_THINK);
 	}
 }

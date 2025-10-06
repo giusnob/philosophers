@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ginobile <ginobile@student.42firenze.it    +#+  +:+       +#+        */
+/*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 16:54:19 by ginobile          #+#    #+#             */
-/*   Updated: 2025/10/05 16:54:20 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/10/06 12:04:43 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	custom_usleep(size_t milliseconds)
 		usleep(50);
 }
 
-void	destroy_forks(t_table *gmu)
+void	destroy_forks(t_table *table)
 {
 	int	i;
 
 	i = 0;
-	while (i < gmu->philos_number)
+	while (i < table->philos_number)
 	{
-		pthread_mutex_destroy(&gmu->forks[i]);
+		pthread_mutex_destroy(&table->forks[i]);
 		i++;
 	}
 }
@@ -41,19 +41,19 @@ size_t	current_time(void)
 	return (tval.tv_sec * 1000 + tval.tv_usec / 1000);
 }
 
-bool	is_sim_finished(t_table *gmu)
+bool	is_sim_finished(t_table *table)
 {
 	bool	end;
 
-	pthread_mutex_lock(&gmu->sim_lock);
-	end = gmu->sim_finished;
-	pthread_mutex_unlock(&gmu->sim_lock);
+	pthread_mutex_lock(&table->sim_lock);
+	end = table->sim_finished;
+	pthread_mutex_unlock(&table->sim_lock);
 	return (end);
 }
 
-void	set_sim_finished(t_table *gmu, bool s_finish)
+void	set_sim_finished(t_table *table, bool s_finish)
 {
-	pthread_mutex_lock(&gmu->sim_lock);
-	gmu->sim_finished = s_finish;
-	pthread_mutex_unlock(&gmu->sim_lock);
+	pthread_mutex_lock(&table->sim_lock);
+	table->sim_finished = s_finish;
+	pthread_mutex_unlock(&table->sim_lock);
 }
