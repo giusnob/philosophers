@@ -1,7 +1,7 @@
 NAME = philo
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -g -I. -Iinclude -Ift_printf/libft -Ift_printf
+CFLAGS = -Wall -Wextra -Werror -g -I.
 RM = rm -f
 
 SRC = ./atoi.c \
@@ -19,9 +19,7 @@ $(NAME): $(SRC)
 	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
 clean:
-	$(RM) $(OBJS)
-	@$(MAKE) -C $(FT_DIR)/libft clean
-	@$(MAKE) -C $(FT_DIR) clean
+
 
 fclean: clean
 	$(RM) $(NAME)
