@@ -6,7 +6,7 @@
 /*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 16:54:07 by ginobile          #+#    #+#             */
-/*   Updated: 2025/10/06 12:04:43 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/10/20 19:26:34 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ void	philo_routine(t_philo *philo)
 	philo->last_meal_time = current_time();
 	pthread_mutex_unlock(&philo->meal_lock);
 	if (philo->table->philos_number == 1)
+	{
+		print_action(philo, ACTION_TAKE_FORK);
 		return ;
+	}
 	while (!is_sim_finished(philo->table))
 	{
 		take_forks(philo);

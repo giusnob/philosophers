@@ -6,7 +6,7 @@
 /*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 16:54:12 by ginobile          #+#    #+#             */
-/*   Updated: 2025/10/06 12:04:43 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/10/20 19:21:47 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	philo_routine(t_philo *philo);
 void	print_action(t_philo *philo, t_action act);
 void	release_forks(t_philo *philo);
 void	set_sim_finished(t_table *table, bool s_finish);
-int		simple_atoi(char *s);
+int		ft_atoi(const char *s);
 void	simulation(t_table *table);
 void	start_dinner(t_table *table);
 void	take_forks(t_philo *philo);
