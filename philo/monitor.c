@@ -6,7 +6,7 @@
 /*   By: ginobile <ginobile@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/05 16:54:04 by ginobile          #+#    #+#             */
-/*   Updated: 2025/10/06 12:04:43 by ginobile         ###   ########.fr       */
+/*   Updated: 2025/10/20 11:19:23 by ginobile         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,5 @@ void	monitor(t_table *table)
 		}
 		usleep(50);
 	}
+	set_sim_finished(table, true);
 }
