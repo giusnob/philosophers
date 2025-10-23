@@ -41,7 +41,7 @@ void	release_forks(t_philo *philo)
 void	philo_routine(t_philo *philo)
 {
 	if (philo->number % 2 == 0)
-		usleep(50);
+		usleep(200);
 	pthread_mutex_lock(&philo->meal_lock);
 	philo->last_meal_time = current_time();
 	pthread_mutex_unlock(&philo->meal_lock);
